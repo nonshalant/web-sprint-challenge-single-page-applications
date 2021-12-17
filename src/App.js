@@ -1,8 +1,9 @@
 import React from "react";
 import styled from 'styled-components';
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import {Link, Switch, Route} from "react-router-dom";
+import {Link, Switch, Route, useHistory} from "react-router-dom";
+import axios from "axios";
+import * as yup from 'yup';
 
 
 const StyledForm = styled.div`
@@ -56,6 +57,9 @@ const StyledForm = styled.div`
     transition: .3s;
   }
 }
+.nav-links {
+  color: black;
+}
 .delivery-section{
   padding: 3%;
 }
@@ -80,21 +84,24 @@ const App = () => {
 
   return (
     <StyledForm>
-      <Router>
-
       <header>
         <nav className="nav-bar">
           <h1>Lambda Eats</h1>
           <ul className="nav-links">
            <Link to="/"> <li>Home</li> </Link>
-            <li>Help</li>
+            <Link to='/help'><li>Help</li></Link>
+            <Switch>
+              <Route exact path='/pizza'>
+
+              </Route>
+            </Switch>
           </ul>
         </nav>
       </header>
 
       <div className="homepage-image">
         <h2> Your favorite food delivered while coding. </h2>
-        <strong className="pizza"> Pizza? </strong>
+        <Link to='/#order-pizza'><strong className="pizza"> Pizza? </strong> </Link>
       </div>
 
       <div className="delivery-section">
@@ -124,7 +131,7 @@ const App = () => {
         </div>
         </div>
       </div>
-      </Router>
+      
     </StyledForm>
   );
 };
